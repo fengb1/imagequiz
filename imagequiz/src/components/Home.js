@@ -54,6 +54,40 @@ class Home extends React.Component {
             <button onClick={this.login}>Login</button>}
           </div>
           <div>Homepage</div>
+          <div>
+            <div className="images">
+              <img src={require("./images/cherryblossom.png")}></img>
+              <figcaption> cherryblossom </figcaption>
+            </div>
+            <div className="images">
+              <img src={require("./images/daffodil.png")}></img>
+              <figcaption> daffodil </figcaption>
+            </div>
+            <div className="images">
+              <img src={require("./images/daisy.jpg")}></img>
+              <figcaption> daisy </figcaption>
+            </div>
+            <div className="images">
+              <img src={require("./images/lily.jpg")}></img>
+              <figcaption> lily </figcaption>
+            </div>
+            <div className="images">
+              <img src={require("./images/rose.png")}></img>
+              <figcaption> rose </figcaption>
+            </div>
+            <div className="images">
+              <img src={require("./images/sunflower.png")}></img>
+              <figcaption> sunflower </figcaption>
+            </div>
+            <div className="images">
+              <img src={require("./images/tulip.png")}></img>
+              <figcaption> tulip </figcaption>
+            </div>
+            <div className="images">
+              <img src={require("./images/waterlily.png")}></img>
+              <figcaption> waterlily </figcaption>
+            </div>
+          </div>
         </div>
       );
     }

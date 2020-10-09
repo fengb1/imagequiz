@@ -1,3 +1,7 @@
 .loginButton {
   float: right;
 }
+
+.images {
+  display: inline-block;
+}
