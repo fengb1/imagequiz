@@ -31,14 +31,20 @@ class Home extends React.Component {
 
   render() {
 
+    imageQuiz1 = () => {
+      return(
+        window.open("./Quiz1.js");
+      );
+    }
+
     if ((!this.state.authenticated) && this.state.showLoginForm) {
       return(
         <div>
           <form onSubmit={this.onSubmit}>
             <label>Username:</label>
             <input
-              name="username"
-              value={this.state.username}
+              name = "username"
+              value = {this.state.username}
               onChange = {this.onInputChange}
             ></input><br></br>
             <button type="submit">Login</button>
@@ -56,7 +62,7 @@ class Home extends React.Component {
           <div>Homepage</div>
           <div>
             <div className="images">
-              <img src={require("./images/cherryblossom.png")}></img>
+              <img src={require("./images/cherryblossom.png") onClick={() => imageQuiz1()}}></img>
               <figcaption> cherryblossom </figcaption>
             </div>
             <div className="images">
