@@ -8,3 +8,5 @@ class Quiz1 extends React.Component {
     <div>second page</div>
   }
 }
+
+export default Quiz1;
