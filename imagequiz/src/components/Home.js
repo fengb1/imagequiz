@@ -1,5 +1,7 @@
 import React from 'react';
 import "./Home.css";
+import { Link } from 'react-router-dom';
+import server from '../ServerInterface/server.js'
 
 class Home extends React.Component {
 
@@ -7,96 +9,56 @@ class Home extends React.Component {
     super(props);
     this.state = {
       username: '',
-      showLoginForm: false,
-      authenticated: false,
+      data: []
     };
   }
 
-  login = () => {
-    this.setState({showLoginForm: true});
+  body = () => {
+    return (
+      <div>
+        {this.state.data.length > 0 ?
+          <div>
+            {this.state.data.map(q =>
+              <div>
+                <Link to={{pathname:"/quiz", state:{id: q.id}}}>
+                  <figure>
+                    <img src={require("/images" + q.picture)}></img>
+                    <figcaption>{q.title}</figcaption>
+                  </figure>
+                </Link>
+              </div>)}
+          </div>
+          : ""}
+      </div>
+    );
   }
 
-  onSubmit = (event) => {
-    if (this.state.username.trim().length > 0) {
-      this.setState({authenticated: true});
-    }
-    event.preventDefault();
-  }
-
-  onInputChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
-    this.setState({[name]: value});
+  componentDidMount() {
+    let data = server.getQuizzes();
+    this.setState({data:data});
   }
 
   render() {
 
-    imageQuiz1 = () => {
-      return(
-        window.open("./Quiz1.js");
-      );
+    let username = '';
+    const location = this.props.location;
+    if (location) {
+      if (location.state) {
+        if (location.state.user) {
+          username = location.state.user;
+        }
+      }
     }
 
-    if ((!this.state.authenticated) && this.state.showLoginForm) {
-      return(
-        <div>
-          <form onSubmit={this.onSubmit}>
-            <label>Username:</label>
-            <input
-              name = "username"
-              value = {this.state.username}
-              onChange = {this.onInputChange}
-            ></input><br></br>
-            <button type="submit">Login</button>
-          </form>
+    return(
+      <div>
+        <div className="loginButton">
+          {username.length > 0 ? username
+            : <Link to='/login'>Login</Link>}
         </div>
-      );
-    }
-    else {
-      return(
-        <div>
-          <div className="loginButton">
-            {this.state.authenticated ? this.state.username :
-            <button onClick={this.login}>Login</button>}
-          </div>
-          <div>Homepage</div>
-          <div>
-            <div className="images">
-              <img src={require("./images/cherryblossom.png") onClick={() => imageQuiz1()}}></img>
-              <figcaption> cherryblossom </figcaption>
-            </div>
-            <div className="images">
-              <img src={require("./images/daffodil.png")}></img>
-              <figcaption> daffodil </figcaption>
-            </div>
-            <div className="images">
-              <img src={require("./images/daisy.jpg")}></img>
-              <figcaption> daisy </figcaption>
-            </div>
-            <div className="images">
-              <img src={require("./images/lily.jpg")}></img>
-              <figcaption> lily </figcaption>
-            </div>
-            <div className="images">
-              <img src={require("./images/rose.png")}></img>
-              <figcaption> rose </figcaption>
-            </div>
-            <div className="images">
-              <img src={require("./images/sunflower.png")}></img>
-              <figcaption> sunflower </figcaption>
-            </div>
-            <div className="images">
-              <img src={require("./images/tulip.png")}></img>
-              <figcaption> tulip </figcaption>
-            </div>
-            <div className="images">
-              <img src={require("./images/waterlily.png")}></img>
-              <figcaption> waterlily </figcaption>
-            </div>
-          </div>
-        </div>
-      );
-    }
+        {this.body()}
+      </div>
+    );
   }
 }
 
