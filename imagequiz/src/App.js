@@ -7,6 +7,7 @@ import {
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Quiz from "./components/Quiz";
+import Score from "./components/Score";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
           <Login />
         </Route>
         <Route path="/quiz" render = {props => <Quiz {...props} />}>
+        </Route>
+        <Route path="/score" render = {props => <Score {...props} />}>
         </Route>
       </Switch>
     </BrowserRouter>

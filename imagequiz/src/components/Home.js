@@ -18,11 +18,11 @@ class Home extends React.Component {
       <div>
         {this.state.data.length > 0 ?
           <div>
-            {this.state.data.map(q =>
-              <div>
+            {this.state.data.map((q, i) =>
+              <div key={i} style={{display: "inline-block"}}>
                 <Link to={{pathname:"/quiz", state:{id: q.id}}}>
                   <figure>
-                    <img src={require("/images" + q.picture)}></img>
+                    <img src={require("./images/" + q.picture)}></img>
                     <figcaption>{q.title}</figcaption>
                   </figure>
                 </Link>
